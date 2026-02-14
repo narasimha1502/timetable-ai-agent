@@ -1,0 +1,38 @@
+{
+  "name": "Timetable AI Agent",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/workspaces/timetable-ai-agent/backend/venv/bin/python",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": false,
+        "python.linting.flake8Enabled": true,
+        "python.formatting.provider": "black",
+        "editor.formatOnSave": true
+      }
+    }
+  },
+  
+  "forwardPorts": [8000, 3000],
+  "portsAttributes": {
+    "8000": {
+      "label": "FastAPI Backend",
+      "onAutoForward": "notify"
+    },
+    "3000": {
+      "label": "React Frontend",
+      "onAutoForward": "notify"
+    }
+  },
+  
+  "postCreateCommand": "cd backend && python -m venv venv && source venv/bin/activate && pip install -r requirements.txt"
+}
